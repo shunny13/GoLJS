@@ -11,6 +11,7 @@ let col;
 let row;
 let resolution = 20;
 let WIDTH =1000; let HEIGHT= 800;
+let frameR = 30;
 
 function setup() {
     createCanvas(WIDTH,HEIGHT);
@@ -37,7 +38,9 @@ function setup() {
     greeting.position(1020, 170);
     input = createInput('30');
     input.position(1020, 225);
-
+    button = createButton('Ok');
+    button.mousePressed(changeTheSpeed);
+    button.position(1020,245);
 
     auto = createElement('h2', 'Automatic');
     auto.position(1020, 250);
@@ -63,6 +66,13 @@ function drawBasicGrid(){
 }
 
 /** Functions for the grid **/
+function changeTheSpeed(){
+    i = parseInt(input.value(),10);
+
+    if (Number.isInteger(i))
+        frameR =i;
+}
+
 function clearTheGrid(){
     grid = makeTheArray(col,row);
     for(i =0;i<col;i++){
@@ -105,7 +115,7 @@ function makeAStep(){
 /**  --- */
 function draw() {
     background(0);
-    frameRate(30);
+    frameRate(frameR);
     drawBasicGrid();
     //makeAStep();
     let val = radio.value();
